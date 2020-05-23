@@ -1,116 +1,119 @@
-
-.busqueda{
-    padding-top: 1%;
-}
-
-.menu{
+/*Encabezado*/
+.encabezado{
   padding-top: 1%;
   padding-left: 2%;
   padding-bottom: 1%;
   background-color: #12203f;
   text-align: center;
-  font-family:'orator std';
+  font-family: 'Lobster', cursive;
   color: white;
 }
-.menu ul {
-    list-style-type: none;
-    text-align: center;    
-    text-decoration: none;
- }
- .encabezado{
-    padding-top: 1%;
-    padding-left: 2%;
-    padding-bottom: 1%;
-    background-color: #12203f;
-    text-align: center;
-    font-family:'orator std';
-    color: white;
+
+/*Fin de encabezado*/
+
+/*menu*/
+.menu{
+  width: 100%;
+  font-family:'Lobster', cursive;
+  color: white;
+  padding-right: 5%;
 }
- 
- .banner{
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    width: 100%;
+
+.menu li{
+  display: inline;
+  margin: 0 10px 0 0;/*espacio entre opciones del menú*/
 }
-  #map { 
-    width: 100%;
-    height: 580px;
-    box-shadow: 5px 5px 5px #888;
- }
- .banner img{
-    width:100%;    
- }
- .banner h1{
-     font-size: 90%;
-     
-     color:#12203f;
- }
- .banner .centrado h1{
-   font-size: xx-large;
- }
- .banner p{
-     font-size: x-large;
-     color:#12203f;
- }
+ul {
+  display:inline-block;
+  width: 97%;
+  overflow: hidden;
+  background-color:#12203f;
+}
+    
+li a {
+  float: left;
+  display: block;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: x-large;
+}
+    
+li a:hover {
+  background-color: white;
+  color: #12203f;
+  }
+/*fin de menu*/
+
+/*banner*/
+.banner{
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  color:#12203f;
+}
+.banner img{
+  width:100%;    
+}
+
+.banner p{
+  font-size: x-large;
+  
+}
+
+ /*fin de banner*/
+
+#map { 
+width: 100%;
+height: 580px;
+box-shadow: 5px 5px 5px #888;
+}
+
 
 .centrado{
-    position: absolute;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
- .menu li{
-    display: inline;
-    text-align: center;
-    margin: 0 10px 0 0;
- }
- a:link, a:visited, a:active 
-{
-    text-decoration: none;
-    color:white;
+position: absolute;
+top: 0%;
+left: 50%;
+transform: translate(-50%, -50%);
 }
 
- .mapa
+a:link, a:visited, a:active 
 {
-    align-content: center;
+text-decoration: none;
+color:white;
+}
+
+.mapa
+{
+align-content: center;
 text-align: center;
 font-size: 1.7em;
 margin-top: 5px;
 margin-top: 5px;
-
 }
 .mostrar{
-    font-size: 30%;
-    align-content: center;
-    
+font-size: 30%;
+align-content: center;   
 }
-/*.mostrar .mapa .card h1{
-    font-size: x-large;
-}*/
+
 .card{
-    align-content: center;
-    color: white;
-    border-radius: 4px;
-    box-shadow: 0px 1px 5px rgba(0,0,0,0.75);
-    background-color: #12203f;
+align-content: center;
+color: white;
+border-radius: 4px;
+box-shadow: 0px 1px 5px rgba(0,0,0,0.75);
+background-color: #12203f;
 }
 .mapa .card h1{
-    margin-top: 10%;
+margin-top: 10%;
 }
 .mostrar .mapa .card{
-  font-size: x-large;
+font-size: x-large;
 }
 
-
- /* copiado de la practica anterior*/
-
-
-  h1{
-      text-align: center;
-  }
-  
-  
+h1{
+text-align: center;
+}
+ 
   #resultados{
     display: flex;
     justify-content: center;
@@ -126,10 +129,10 @@ margin-top: 5px;
     flex-wrap: wrap
   }
 
-  .series #verSerie img{
-    width: 30%;
-    height: 25%;
-     border-radius: 15%;
+.series #verSerie img{
+    width: 80%;
+    height: 45%;
+    
   }
  
   
@@ -144,7 +147,7 @@ margin-top: 5px;
       font-size: x-large;
   }
   .series #verSerie a{
-      color: red;
+      color: black;
   }
   .botonimagen{ /*las imagenes que aparecen en el index y en mas populares*/
       display: block;
@@ -186,7 +189,8 @@ margin-top: 5px;
   color: white;
 }
 
-.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active)
+ {background-color: #ddd;}
 
 #paginado {
   text-align: center;
@@ -247,3 +251,40 @@ div #formularioCompartir {
   color: red;
 }
 
+body{
+  background: white;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+}
+
+.contenedor{
+  max-width: 100%;
+  margin: auto;
+  font-size: 100%;
+  text-align: center;
+}
+
+.video-responsive {
+  position: relative;
+  padding-bottom: 56.25%; /* 16/9 ratio */
+  padding-top: 30px; /* IE6 workaround*/
+  height: 0;
+  overflow: hidden;
+  }
+  
+  .video-responsive iframe,
+  .video-responsive object,
+  .video-responsive embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  }
+
+#texto{
+  color:black;
+}
+span{
+  color:#f2f2f2;
+}

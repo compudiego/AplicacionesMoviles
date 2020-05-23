@@ -40,7 +40,7 @@ function buscarSeriesPorPagina(){
 							"</br>Cadena de TV: "+data.tv_shows[i].network+
 						"</span></b><br>"+
 						"<p> </p>"+
-						"<input type='button' id='compartido' value='Compartir' onclick='intercambio()'>"
+						"<input type='button' id='compartido' value='Compartir' onclick='intercambio("+data.tv_shows[i].id+")'>"
 					"</article>"
 				}
 				paginas(data.pages);
@@ -50,7 +50,6 @@ function buscarSeriesPorPagina(){
 }
 function relanzar(){
 	resultados.innerHTML="";
-
 	$.ajax({
 		url:  "https://www.episodate.com/api/search?q="+visitas+"&page="+numeroPagina,
 		type: 'GET',
@@ -73,7 +72,7 @@ function relanzar(){
 							"</br>Estado de la serie: "+data.tv_shows[i].status+
 							"</br>Cadena de TV: "+data.tv_shows[i].network+
 						"</span></b><br>"+
-						"<input type='button' value='Compartir' onclick='intercambio()'>"
+						"<input type='button' value='Compartir' onclick='intercambio("+data.tv_shows[i].id+")'>"
 					"</article>"
 				}
 				paginas(data.pages);
@@ -126,7 +125,7 @@ function mostrarSerie(){
 				  var vacio = true;
 				  impresorDeImagenes = []
 				  for(i=0;i<fotos.length; i++){
-					  impresorDeImagenes.push("<div id='galeriaImagenes'><img src='"+recortadas2[i]+"' height='100' width='250' alt='' /></div>");
+					  impresorDeImagenes.push("<img src='"+recortadas2[i]+"'/>");
 				  }	
 				  if(fotos.length === 0){
 					  vacio = false;
@@ -134,27 +133,26 @@ function mostrarSerie(){
 				  verSerie.innerHTML += 
 				  "<div class='serie'>"+
 					  "<h1>"+data.tvShow.name+"</h1>"+
-					  "<img src='"+data.tvShow.image_path+"'>"+
 					  "<p> </p>"+
 					  "<span>"+
-						  "<b>Sinopsis:</b> <br>"+
+						  "<p id= 'texto'><b>Sinopsis:</b> <br>"+
 						  data.tvShow.description+
 						  "<p> </p>"+
 						  (data.tvShow.description_source?
-						  "<b>Mas info:</b> <a href='"+data.tvShow.description_source+"' target='_blank'>Click Aqui</a>" :
+						  "<p id= 'texto'><b>Mas info:</b> <a  href ='"+data.tvShow.description_source+"' target='_blank'>Click Aqui</a></p>" :
 						  "")+
 						  "<p> </p>"+
-						  "<b>Trailer:</b>"+
+						  "<b id='texto'>Trailer:</b></p>"+
 						  "<p> </p>"+
-						  "<iframe id ='videoyou'  src=https://www.youtube.com/embed/"+data.tvShow.youtube_link+" frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
+						  "<div class='video-responsive'><iframe src=https://www.youtube.com/embed/"+data.tvShow.youtube_link+" frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>"+
 						  "<p> </p>"+
 						  (vacio?
-						  "<b>Galeria de imágenes:</b>"+
+						  "<b id= 'texto'>Galeria de imágenes:</b>"+
 						  "<p> </p>"+
 						  impresorDeImagenes:
 						  "<p> </p>")+
-						  "<b>Cadena de TV:</b> "+data.tvShow.network+
-						  "<br><b>Generos: </b>"+data.tvShow.genres+
+						  "<br><p id='texto'><b>Cadena de TV:</b> "+data.tvShow.network+"</p>"+
+						  "<p id='texto'><b>Generos: </b>"+data.tvShow.genres+"</p>"+
 					 "</span>"+
 				  "</div>"
 
@@ -162,7 +160,8 @@ function mostrarSerie(){
   })
 }
 
-function intercambio(){
+function intercambio(id){
+	localStorage.setItem("variableCompartir", id);
 	window.location.href ='compartir.html';
 }
 
@@ -170,7 +169,7 @@ function intercambio(){
 function compartir(){
 	document.getElementById('formulario').innerHTML = "";
 	$.ajax({
-		url: "https://www.episodate.com/api/show-details?q="+localStorage.getItem('variable'),
+		url: "https://www.episodate.com/api/show-details?q="+localStorage.getItem('variableCompartir'),
 		type: 'GET',
 		dataType: "json",
 		success: function(data){
@@ -179,9 +178,11 @@ function compartir(){
 						"<label for='nombre'><b>Nombre: </b>"+data.tvShow.name+"</b></label><br><br>"+
 						"<label for='nombre'><b>Descripcion: </b>"+data.tvShow.description+"</b></label><br>"+
 						"<h3 id='titulados'><b>Enviar por correo a un amigo </b></h3><br>"+
-						"<h4 id='errorEmail'></h4>"+
-						"<h4 id='errorEmail2'></h4>"+
-						"<h4 id='errorEmail3'></h4>"+
+						"<div id='erroresTipeo'>"+
+							"<h4 id='errorEmail'></h4>"+
+							"<h4 id='errorEmail2'></h4>"+
+							"<h4 id='errorEmail3'></h4>"+
+						"</div>"+
 						"<input type='text' name='emisor' id='emisor' placeholder= 'Correo Emisor'><br>"+
 						"<input type='text' name='destino' id='destino' placeholder= 'Correo Destino'><br>"+
 						"<input type='text' name='mensaje' id='comentario' placeholder= 'Comentario'><br><br>"+
@@ -213,15 +214,11 @@ function validate(){
 	expresion = /\w+@+\w+\.+[a-z]/;
 
 	if(email === "" || email2 === ""){
-		error.innerHTML="¡¡¡Los campos de Email son obligatorios!!!"
+		error.innerHTML="Los campos de Email son obligatorios"
 		return false;
 	}
-	else if(!expresion.test(email)){
-		error2.innerHTML = "¡¡¡Formato de Email emisor Incorrecto!!!"
-		return false;
-	}
-	else if(!expresion.test(email2)){
-		error3.innerHTML = "¡¡¡Formato de Email destino Incorrecto!!!"
+	else if(!expresion.test(email) || !expresion.test(email2)){
+		error2.innerHTML = "Formato de Email Incorrecto"
 		return false;
 	}
 	enviar();
@@ -270,7 +267,7 @@ function popular(){
 							"</br>Estado de la serie: "+data.tv_shows[i].status+
 							"</br>Cadena de TV: "+data.tv_shows[i].network+
 						"</span></b><br>"+
-						"<input id='compartido'type='button' value='Compartir' onclick='intercambio()'>"
+						"<input id='compartido'type='button' value='Compartir' onclick='intercambio("+data.tv_shows[i].id+")'>"
 					"</div>"
 				}
 			}
