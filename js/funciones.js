@@ -31,14 +31,14 @@ function buscarSeriesPorPagina(){
 				for(i=0;i<total;i++){
 					console.log(data.total/data.page)
 					resultados.innerHTML += 
-					"<article class='serie'>"+
+					"<article class='serie' id='texto'>"+
 						"<h2>"+data.tv_shows[i].name+"</h2></br>"+
 						"<input class='botonimagen' type=image src='"+data.tv_shows[i].image_thumbnail_path+"' onclick='intercambiar("+data.tv_shows[i].id+")'></input>"+
-						"<span><b><br>Pais: "+data.tv_shows[i].country+
+						"<p><b><br>Pais: "+data.tv_shows[i].country+
 							"</br>Fecha de Inicio: "+data.tv_shows[i].start_date+
 							"</br>Estado de la serie: "+data.tv_shows[i].status+
 							"</br>Cadena de TV: "+data.tv_shows[i].network+
-						"</span></b><br>"+
+						"</p></b><br>"+
 						"<p> </p>"+
 						"<input type='button' id='compartido' value='Compartir' onclick='intercambio("+data.tv_shows[i].id+")'>"
 					"</article>"
@@ -67,11 +67,11 @@ function relanzar(){
 					"<article class='serie'>"+
 						"<h1>"+data.tv_shows[i].name+"</h1></br>"+
 						"<input class='botonimagen' type=image src='"+data.tv_shows[i].image_thumbnail_path+"' onclick='intercambiar("+data.tv_shows[i].id+")'></input>"+
-						"<span><b><br>Pais: "+data.tv_shows[i].country+
+						"<p><b><br>Pais: "+data.tv_shows[i].country+
 							"</br>Fecha de Inicio: "+data.tv_shows[i].start_date+
 							"</br>Estado de la serie: "+data.tv_shows[i].status+
 							"</br>Cadena de TV: "+data.tv_shows[i].network+
-						"</span></b><br>"+
+						"</p></b><br>"+
 						"<input type='button' value='Compartir' onclick='intercambio("+data.tv_shows[i].id+")'>"
 					"</article>"
 				}
@@ -260,13 +260,13 @@ function popular(){
 					for(i=0;i<data.total;i++){
 					mostPopular.innerHTML += 
 					"<div class='serie'>"+
-						"<h3>"+data.tv_shows[i].name+"</h3></br>"+
+						"<h2>"+data.tv_shows[i].name+"</h2></br>"+
 						"<input class='botonimagen'type=image src='"+data.tv_shows[i].image_thumbnail_path+"' onclick='intercambiar("+data.tv_shows[i].id+")'></input>"+
-						"<span><b><br>Pais: "+data.tv_shows[i].country+
+						"<p><b><br>Pais: "+data.tv_shows[i].country+
 							"</br>Fecha de Inicio: "+data.tv_shows[i].start_date+
 							"</br>Estado de la serie: "+data.tv_shows[i].status+
 							"</br>Cadena de TV: "+data.tv_shows[i].network+
-						"</span></b><br>"+
+						"</p></b><br>"+
 						"<input id='compartido'type='button' value='Compartir' onclick='intercambio("+data.tv_shows[i].id+")'>"
 					"</div>"
 				}
