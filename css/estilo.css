@@ -71,12 +71,6 @@
     color:white;
 }
 
-
-a:hover /*apoyar sobre el menu*/
-{
-    font-size: x-large;
-    
-}
  .mapa
 {
     align-content: center;
@@ -137,12 +131,7 @@ margin-top: 5px;
     height: 25%;
      border-radius: 15%;
   }
- /* #videoyoTube{
-    width: 100%;
-    position: relative; 
-     
-    border: solid;
-  }*/
+ 
   
   .mail #enviarMail a{
    color:black;
@@ -172,7 +161,7 @@ margin-top: 5px;
     align-content: center;
     width: 100%;
     font-size: 70%;
-    background-color: #f2f2f2;
+    background-color: #f2f2f2
   }
   #formulario{
       width: 100%;

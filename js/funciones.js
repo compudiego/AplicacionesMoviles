@@ -146,7 +146,7 @@ function mostrarSerie(){
 						  "<p> </p>"+
 						  "<b>Trailer:</b>"+
 						  "<p> </p>"+
-						  "<iframe id='videoyouTube' src=https://www.youtube.com/embed/"+data.tvShow.youtube_link+" frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
+						  "<iframe id ='videoyou'  src=https://www.youtube.com/embed/"+data.tvShow.youtube_link+" frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
 						  "<p> </p>"+
 						  (vacio?
 						  "<b>Galeria de imágenes:</b>"+
@@ -154,7 +154,7 @@ function mostrarSerie(){
 						  impresorDeImagenes:
 						  "<p> </p>")+
 						  "<b>Cadena de TV:</b> "+data.tvShow.network+
-						  "<b>Generos: </b>"+data.tvShow.genres+
+						  "<br><b>Generos: </b>"+data.tvShow.genres+
 					 "</span>"+
 				  "</div>"
 
