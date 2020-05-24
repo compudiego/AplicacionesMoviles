@@ -26,21 +26,21 @@ function buscarSeriesPorPagina(){
 					
 				}
 				else{
-					historial.innerHTML = "<br><button class= 'botonhistorial'  onclick='relanzar()'>Ultima Busqueda: "+visitas+"</button>"
+					historial.innerHTML = "<br><button type='submit' id='compartido' class='btn' type='button' onclick='relanzar()'>Última Búsqueda: "+visitas+"</button>"
 				}
 				for(i=0;i<total;i++){
 					console.log(data.total/data.page)
 					resultados.innerHTML += 
 					"<article class='serie' id='texto'>"+
-						"<h2>"+data.tv_shows[i].name+"</h2></br>"+
+						"<h2><i>"+data.tv_shows[i].name+"</i></h2></br>"+
 						"<input class='botonimagen' type=image src='"+data.tv_shows[i].image_thumbnail_path+"' onclick='intercambiar("+data.tv_shows[i].id+")'></input>"+
 						"<p><b><br>Pais: "+data.tv_shows[i].country+
 							"</br>Fecha de Inicio: "+data.tv_shows[i].start_date+
 							"</br>Estado de la serie: "+data.tv_shows[i].status+
 							"</br>Cadena de TV: "+data.tv_shows[i].network+
 						"</p></b><br>"+
-						"<p> </p>"+
-						"<input type='button' id='compartido' value='Compartir' onclick='intercambio("+data.tv_shows[i].id+")'>"
+						"<button type='submit' id='compartido2' class='btn' onclick='intercambio("+data.tv_shows[i].id+")'>Compartir</button>"+
+						"<p> </p>"
 					"</article>"
 				}
 				paginas(data.pages);
@@ -56,23 +56,30 @@ function relanzar(){
 		dataType: "json",
 		success: function(data){
 			if(data.total==0){
-				alert("Sin resultados")
+				errorBusqueda.innerHTML = "Sin resultados, pruebe nuevamente";
 			}
 			else{
+				errorBusqueda.innerHTML = "";
 				var total = Number(data.total)/data.pages;
-				historial.innerHTML = "<button class= 'botonhistorial' onclick='relanzar()'>Ultima Busqueda: "+visitas+"</button>"
+				if(visitas===null){
+					
+				}
+				else{
+					historial.innerHTML = "<br><button type='submit' id='compartido' class='btn' type='button' onclick='relanzar()'>Última Búsqueda: "+visitas+"</button>"
+				}
 				for(i=0;i<total;i++){
 					console.log(data.total/data.page)
 					resultados.innerHTML += 
-					"<article class='serie'>"+
-						"<h1>"+data.tv_shows[i].name+"</h1></br>"+
+					"<article class='serie' id='texto'>"+
+						"<h2><i>"+data.tv_shows[i].name+"</i></h2></br>"+
 						"<input class='botonimagen' type=image src='"+data.tv_shows[i].image_thumbnail_path+"' onclick='intercambiar("+data.tv_shows[i].id+")'></input>"+
 						"<p><b><br>Pais: "+data.tv_shows[i].country+
 							"</br>Fecha de Inicio: "+data.tv_shows[i].start_date+
 							"</br>Estado de la serie: "+data.tv_shows[i].status+
 							"</br>Cadena de TV: "+data.tv_shows[i].network+
 						"</p></b><br>"+
-						"<input type='button' value='Compartir' onclick='intercambio("+data.tv_shows[i].id+")'>"
+						"<button type='submit' id='compartido2' class='btn' onclick='intercambio("+data.tv_shows[i].id+")'>Compartir</button>"+
+						"<p> </p>"
 					"</article>"
 				}
 				paginas(data.pages);
