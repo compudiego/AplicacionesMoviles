@@ -1,6 +1,6 @@
 var numeroPagina;
 var visitas;
-
+var variable;
 function buscarSeriesPorPagina(){
 
   visitas = localStorage.getItem('visitas');
@@ -243,10 +243,10 @@ function cancelar(){
 	}
 }
 
-function enviar (){
+function enviar(){
 	document.getElementById('enviarMail').innerHTML = "";
 		$.ajax({
-		url: "https://www.episodate.com/api/show-details?q="+localStorage.getItem('variable'),
+		url: "https://www.episodate.com/api/show-details?q="+localStorage.getItem('variableCompartir'),
 		type: 'GET',
 		dataType: "json",
 		success: function(data){
