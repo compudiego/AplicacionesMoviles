@@ -17,7 +17,7 @@ function buscarSeriesPorPagina(){
 		dataType: "json",
 		success: function(data){
 			if(data.total==0){
-				errorBusqueda.innerHTML = "Sin resultados, pruebe nuevamente";
+				errorBusqueda.innerHTML = "Sin resultados, pruebe nuevamente.";
 			}
 			else{
 				errorBusqueda.innerHTML = "";
@@ -159,7 +159,9 @@ function mostrarSerie(){
 						  impresorDeImagenes:
 						  "<p> </p>")+
 						  "<br><p id='texto'><b>Cadena de TV:</b> "+data.tvShow.network+"</p>"+
-						  "<p id='texto'><b>Generos: </b>"+data.tvShow.genres+"</p>"+
+						  (data.tvShow.genres?
+						  "<p id='texto'><b>Generos: </b>"+data.tvShow.genres+"</p>" :
+						  " ")+
 					 "</span>"+
 				  "</div>"
 
@@ -184,15 +186,15 @@ function compartir(){
 					"<form action method='POST' id='formularioCompartir' type='submit' >"+
 						"<label for='nombre'><b>Nombre: </b>"+data.tvShow.name+"</b></label><br><br>"+
 						"<label for='nombre'><b>Descripcion: </b>"+data.tvShow.description+"</b></label><br>"+
-						"<h3 id='titulados'><b>Enviar por correo a un amigo </b></h3><br>"+
+						"<h3 id='titulados'><b>Enviar por email a un amigo </b></h3><br>"+
 						"<div id='erroresTipeo'>"+
 							"<h4 id='errorEmail'></h4>"+
 							"<h4 id='errorEmail2'></h4>"+
 							"<h4 id='errorEmail3'></h4>"+
 						"</div>"+
-						"<input type='text' name='emisor' id='emisor' placeholder= 'Correo Emisor'><br>"+
-						"<input type='text' name='destino' id='destino' placeholder= 'Correo Destino'><br>"+
-						"<input type='text' name='mensaje' id='comentario' placeholder= 'Comentario'><br><br>"+
+						"<input type='text' name='emisor' id='emisor' placeholder= 'Email Emisor (requerido)'><br>"+
+						"<input type='text' name='destino' id='destino' placeholder= 'Email Destino (requerido)'><br>"+
+						"<input type='text' name='mensaje' id='comentario' placeholder= 'Comentario (opcional)'><br><br>"+
 						"<input id='compartido' type='button' value='Enviar Email' onclick='validate();'><br>"+
             			"<input id='compartido'type='button' onclick='cancelar();' value='Cancelar'>"+
 					"</form>"
@@ -274,7 +276,7 @@ function popular(){
 							"</br>Estado de la serie: "+data.tv_shows[i].status+
 							"</br>Cadena de TV: "+data.tv_shows[i].network+
 						"</p></b><br>"+
-						"<input id='compartido'type='button' value='Compartir' onclick='intercambio("+data.tv_shows[i].id+")'>"
+						"<button type='submit' id='compartido2' class='btn' onclick='intercambio("+data.tv_shows[i].id+")'>Compartir</button>"+
 					"</div>"
 				}
 			}
